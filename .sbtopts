@@ -1,0 +1,1 @@
+-Dorg.jline.terminal.exec.redirectPipeCreationMode=native
