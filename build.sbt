@@ -5,6 +5,8 @@ ThisBuild / version      := "0.0.0-SNAPSHOT"
 ThisBuild / usePipelining     := true
 ThisBuild / semanticdbEnabled := true
 
+ThisBuild / Compile / run / fork := true
+
 ThisBuild / Test / parallelExecution  := true
 ThisBuild / Test / fork               := true
 ThisBuild / Test / testForkedParallel := true
