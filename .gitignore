@@ -1,3 +1,4 @@
+/**/.DS_Store
 /**/target/
 /src/test/resources/sources/**/*
 !/src/test/resources/sources/**/*.scala
