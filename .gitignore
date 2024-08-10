@@ -1,4 +1,6 @@
 /**/target/
+/src/test/resources/sources/**/*
+!/src/test/resources/sources/**/*.scala
 /.bsp/
 /.idea/*
 !/.idea/bsp.xml
