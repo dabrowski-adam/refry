@@ -1,6 +1,6 @@
 ThisBuild / organization := "com.adamdabrowski"
 ThisBuild / scalaVersion := "3.5.0-RC6"
-ThisBuild / version      := "0.0.0-SNAPSHOT"
+ThisBuild / version      := Version.current
 
 ThisBuild / usePipelining     := true
 ThisBuild / semanticdbEnabled := true
