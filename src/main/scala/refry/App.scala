@@ -13,4 +13,4 @@ object App extends IOApp:
             case _           => ExitCode.Error.pure[IO]
 
 
-    def greet(name: String): String = s"Hello, $name!!!"
+    private[refry] def greet(name: String): String = s"Hello, $name!!!"
