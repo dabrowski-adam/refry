@@ -1,0 +1,3 @@
+#!/bin/sh
+sbt -batch -info -Dorg.jline.terminal.dumb=true "compile;run $*" \
+    | awk '/running/ { found=1; next } found { $1=""; print substr($0,2) }'
