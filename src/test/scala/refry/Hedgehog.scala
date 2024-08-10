@@ -14,6 +14,7 @@ trait Hedgehog:
     export hedgehog.{Gen, Range}
     export hedgehog.Syntax
 
+
     def propertyTest(name: String)(property: Property): Unit =
         val seed = Seed.fromLong(SeedSource.fromEnvOrTime().seed)
 
@@ -23,14 +24,14 @@ trait Hedgehog:
     private def run(prop: Prop, seed: Seed): IO[Expectations] =
         for
             report <- IO.delay:
-                Property.check(
-                    prop.withConfig(PropertyConfig.default),
-                    prop.result,
-                    seed,
-                )
+                          Property.check(
+                              prop.withConfig(PropertyConfig.default),
+                              prop.result,
+                              seed,
+                          )
             outcome = report.status match
-                case OK => success
-                case _  => failure(render(prop, report))
+                          case OK => success
+                          case _  => failure(render(prop, report))
         yield outcome
 
 

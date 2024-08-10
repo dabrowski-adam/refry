@@ -1,10 +1,13 @@
 package refry
 
+
+import cats.effect.ExitCode
 import weaver.*
 
 
 object AppTest extends SimpleIOSuite with Hedgehog:
 
-    propertyTest("greets everyone"):
-        for name <- Gen.string(Gen.unicode, Range.linear(1, 10)).forAll
-        yield App.greet(name) ==== s"Hello, $name!!!"
+    test("find .tasty files"):
+        val source = "src/test/resources/sources/hello-world/"
+        for exitCode <- App.run(List(source))
+        yield expect(exitCode == ExitCode.Success)

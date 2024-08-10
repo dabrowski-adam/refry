@@ -3,6 +3,7 @@ package refry
 
 import cats.effect.{ExitCode, IO, IOApp}
 import cats.effect.std.Console
+import fs2.io.file.{Files, Path}
 
 
 object App extends IOApp:
@@ -11,8 +12,11 @@ object App extends IOApp:
         args match
             case Help()      =>
                 Console[IO].print(help).as(ExitCode.Success)
-            case name :: Nil =>
-                Console[IO].print(greet(name)).as(ExitCode.Success)
+            case path :: Nil =>
+                for
+                    files <- tastyFiles(path)
+                    _     <- Console[IO].print(files.mkString("\n"))
+                yield ExitCode.Success
             case _           =>
                 Console[IO].error(help).as(ExitCode.Error)
 
@@ -29,5 +33,9 @@ object App extends IOApp:
            |""".stripMargin
 
 
-    private[refry] def greet(name: String): String =
-        s"Hello, $name!!!"
+    private[refry] def tastyFiles(path: String): IO[List[Path]] =
+        Files[IO]
+            .walk(Path(path))
+            .filter(_.extName == ".tasty")
+            .compile
+            .toList
