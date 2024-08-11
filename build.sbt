@@ -21,6 +21,7 @@ lazy val refry = (project in file("."))
             "-new-syntax",
             "-deprecation",
             "-feature",
+            "-language:strictEquality",
             "-Xmax-inlines:64",
             "-Xkind-projector:underscores",
             "-Yexplicit-nulls",

@@ -2,7 +2,7 @@ package refry
 
 
 import cats.effect.*
-import hedgehog.core.{OK, PropertyConfig, Report, Seed}
+import hedgehog.core.{OK, PropertyConfig, Report, Seed, Status}
 import hedgehog.runner.{property as prop, Prop, SeedSource, Test}
 import hedgehog.Property
 import weaver.*
@@ -14,6 +14,8 @@ trait Hedgehog:
     export hedgehog.{Gen, Range}
     export hedgehog.Syntax
 
+
+    given CanEqual[OK.type, Status] = CanEqual.derived
 
     def propertyTest(name: String)(property: Property): Unit =
         val seed = Seed.fromLong(SeedSource.fromEnvOrTime().seed)
