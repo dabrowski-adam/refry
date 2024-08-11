@@ -29,8 +29,7 @@ object App extends IOApp:
 
     private object Paths:
         def unapply(args: List[String]): Option[List[String]] =
-            val positionalArgs =
-                args.filterNot(arg => arg.startsWith("--") || arg.startsWith("-"))
+            val positionalArgs = args.filterNot(_.startsWith("-"))
 
             positionalArgs match
                 case Nil   => None
