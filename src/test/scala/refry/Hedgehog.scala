@@ -23,15 +23,17 @@ trait Hedgehog:
 
     private def run(prop: Prop, seed: Seed): IO[Expectations] =
         for
-            report <- IO.delay:
-                          Property.check(
-                              prop.withConfig(PropertyConfig.default),
-                              prop.result,
-                              seed,
-                          )
-            outcome = report.status match
-                          case OK => success
-                          case _  => failure(render(prop, report))
+            report <-
+                IO.delay:
+                    Property.check(
+                        prop.withConfig(PropertyConfig.default),
+                        prop.result,
+                        seed,
+                    )
+            outcome =
+                report.status match
+                    case OK => success
+                    case _  => failure(render(prop, report))
         yield outcome
 
 
