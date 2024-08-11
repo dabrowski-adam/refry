@@ -36,6 +36,6 @@ object App extends IOApp:
     private[refry] def tastyFiles(path: String): IO[List[Path]] =
         Files[IO]
             .walk(Path(path))
-            .filter(_.extName == ".tasty")
+            .filter(file => file.extName == ".scala" || file.extName == ".tasty")
             .compile
             .toList
