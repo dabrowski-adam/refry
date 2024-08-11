@@ -1,3 +1,6 @@
+enablePlugins(JavaAppPackaging)
+enablePlugins(GraalVMNativeImagePlugin)
+
 ThisBuild / organization := "com.adamdabrowski"
 ThisBuild / scalaVersion := "3.5.0-RC7"
 ThisBuild / version      := Version.current

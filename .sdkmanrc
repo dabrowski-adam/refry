@@ -1,2 +1,2 @@
 # Run `sdk config` and set sdkman_auto_env=true
-java = 22-amzn
+java = 22.0.2-graalce
